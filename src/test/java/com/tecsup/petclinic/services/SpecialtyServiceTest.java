@@ -12,7 +12,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.tecsup.petclinic.exceptions.SpecialtyNotFoundException;
+import com.tecsup.petclinic.exceptions.SpecialityNotFoundException;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -33,7 +33,7 @@ public class SpecialtyServiceTest {
 
         try {
             specialty = this.specialtyService.findById(ID);
-        } catch (SpecialtyNotFoundException e) {
+        } catch (SpecialityNotFoundException e) {
             fail(e.getMessage());
         }
 
@@ -134,14 +134,14 @@ public class SpecialtyServiceTest {
 
         try {
             this.specialtyService.delete(newSpecialtyDTO.getId());
-        } catch (SpecialtyNotFoundException e) {
+        } catch (SpecialityNotFoundException e) {
             fail(e.getMessage());
         }
 
         try {
             this.specialtyService.findById(newSpecialtyDTO.getId());
             assertTrue(false);
-        } catch (SpecialtyNotFoundException e) {
+        } catch (SpecialityNotFoundException e) {
             assertTrue(true);
         }
     }
