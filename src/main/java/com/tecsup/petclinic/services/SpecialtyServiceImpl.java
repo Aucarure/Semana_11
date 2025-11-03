@@ -23,18 +23,18 @@ public class SpecialtyServiceImpl implements SpecialtyService {
 
     @Override
     public SpecialtyDTO create(SpecialtyDTO specialtyDTO) {
-        Specialty specialty = specialtyMapper.mapToEntity(specialtyDTO);
+        Specialty specialty = specialtyMapper.toEntity(specialtyDTO);
         Specialty savedSpecialty = specialtyRepository.save(specialty);
         log.info("Specialty created: {}", savedSpecialty);
-        return specialtyMapper.mapToDto(savedSpecialty);
+        return specialtyMapper.toDTO(savedSpecialty);
     }
 
     @Override
     public SpecialtyDTO update(SpecialtyDTO specialtyDTO) {
-        Specialty specialty = specialtyMapper.mapToEntity(specialtyDTO);
+        Specialty specialty = specialtyMapper.toEntity(specialtyDTO);
         Specialty updatedSpecialty = specialtyRepository.save(specialty);
         log.info("Specialty updated: {}", updatedSpecialty);
-        return specialtyMapper.mapToDto(updatedSpecialty);
+        return specialtyMapper.toDTO(updatedSpecialty);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class SpecialtyServiceImpl implements SpecialtyService {
     public SpecialtyDTO findById(Integer id) throws SpecialityNotFoundException {
         Specialty specialty = specialtyRepository.findById(id)
                 .orElseThrow(() -> new SpecialityNotFoundException("Specialty not found with id: " + id));
-        return specialtyMapper.mapToDto(specialty);
+        return specialtyMapper.toDTO(specialty);
     }
 
     @Override
