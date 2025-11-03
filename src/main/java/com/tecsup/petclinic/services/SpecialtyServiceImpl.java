@@ -2,7 +2,7 @@ package com.tecsup.petclinic.services;
 
 import com.tecsup.petclinic.dtos.SpecialtyDTO;
 import com.tecsup.petclinic.entities.Specialty;
-import com.tecsup.petclinic.exceptions.SpecialtyNotFoundException;
+import com.tecsup.petclinic.exceptions.SpecialityNotFoundException;
 import com.tecsup.petclinic.mappers.SpecialtyMapper;
 import com.tecsup.petclinic.repositories.SpecialtyRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -38,17 +38,17 @@ public class SpecialtyServiceImpl implements SpecialtyService {
     }
 
     @Override
-    public void delete(Integer id) throws SpecialtyNotFoundException {
+    public void delete(Integer id) throws SpecialityNotFoundException {
         Specialty specialty = specialtyRepository.findById(id)
-                .orElseThrow(() -> new SpecialtyNotFoundException("Specialty not found with id: " + id));
+                .orElseThrow(() -> new SpecialityNotFoundException("Specialty not found with id: " + id));
         specialtyRepository.delete(specialty);
         log.info("Specialty deleted with id: {}", id);
     }
 
     @Override
-    public SpecialtyDTO findById(Integer id) throws SpecialtyNotFoundException {
+    public SpecialtyDTO findById(Integer id) throws SpecialityNotFoundException {
         Specialty specialty = specialtyRepository.findById(id)
-                .orElseThrow(() -> new SpecialtyNotFoundException("Specialty not found with id: " + id));
+                .orElseThrow(() -> new SpecialityNotFoundException("Specialty not found with id: " + id));
         return specialtyMapper.toDTO(specialty);
     }
 
