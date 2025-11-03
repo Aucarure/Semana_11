@@ -3,7 +3,7 @@ package com.tecsup.petclinic.services;
 import com.tecsup.petclinic.dtos.SpecialtyDTO;
 import com.tecsup.petclinic.entities.Specialty;
 import com.tecsup.petclinic.exceptions.SpecialityNotFoundException;
-import com.tecsup.petclinic.mappers.SpecialtyMapper;
+import com.tecsup.petclinic.mappers.SpecialityMapper;
 import com.tecsup.petclinic.repositories.SpecialtyRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,22 +19,22 @@ public class SpecialtyServiceImpl implements SpecialtyService {
     private SpecialtyRepository specialtyRepository;
 
     @Autowired
-    private SpecialtyMapper specialtyMapper;
+    private SpecialityMapper specialtyMapper;
 
     @Override
     public SpecialtyDTO create(SpecialtyDTO specialtyDTO) {
-        Specialty specialty = specialtyMapper.toEntity(specialtyDTO);
+        Specialty specialty = specialtyMapper.mapToEntity(specialtyDTO);
         Specialty savedSpecialty = specialtyRepository.save(specialty);
         log.info("Specialty created: {}", savedSpecialty);
-        return specialtyMapper.toDTO(savedSpecialty);
+        return specialtyMapper.mapToDto(savedSpecialty);
     }
 
     @Override
     public SpecialtyDTO update(SpecialtyDTO specialtyDTO) {
-        Specialty specialty = specialtyMapper.toEntity(specialtyDTO);
+        Specialty specialty = specialtyMapper.mapToEntity(specialtyDTO);
         Specialty updatedSpecialty = specialtyRepository.save(specialty);
         log.info("Specialty updated: {}", updatedSpecialty);
-        return specialtyMapper.toDTO(updatedSpecialty);
+        return specialtyMapper.mapToDto(updatedSpecialty);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class SpecialtyServiceImpl implements SpecialtyService {
     public SpecialtyDTO findById(Integer id) throws SpecialityNotFoundException {
         Specialty specialty = specialtyRepository.findById(id)
                 .orElseThrow(() -> new SpecialityNotFoundException("Specialty not found with id: " + id));
-        return specialtyMapper.toDTO(specialty);
+        return specialtyMapper.mapToDto(specialty);
     }
 
     @Override
